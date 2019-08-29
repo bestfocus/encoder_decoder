@@ -1,4 +1,5 @@
 # This is an example of encoder decoder
+# The encoder decoder borrows from an optional model in the NLP Machine Translation project on Udacity
 import numpy as np
 import random
 
