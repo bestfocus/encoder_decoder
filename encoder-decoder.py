@@ -1,5 +1,5 @@
-# This is an example of encoder decoder
-# The encoder decoder borrows from an optional model in the NLP Machine Translation project on Udacity
+# This is an example of RNN encoder decoder model for deep learning
+# The encoder decoder code borrows from an optional model in the NLP Machine Translation project on Udacity
 import numpy as np
 import random
 
@@ -8,11 +8,14 @@ from keras.layers import (Dense, Input, TimeDistributed, RepeatVector, GRU)
 from keras.losses import sparse_categorical_crossentropy
 from keras.optimizers import Adam
 
+# generate input data randomly
 x_size=22
 y_size=27
 x=np.array([random.randint(0,100) for _ in range(3*10)]).reshape((3,10,1))
 y=np.array([random.randint(0,100) for _ in range(3*14)]).reshape((3,14,1))
 
+# build the encoder decoder model, input sequence has length of 10
+# output sequence has length of 14
 learning_rate = 1e-3
 input_shape=x.shape
 output_sequence_length=14
@@ -28,4 +31,5 @@ model.compile(loss=sparse_categorical_crossentropy,
               optimizer=Adam(learning_rate),
               metrics=['accuracy'])
 
+# train the model
 model.fit(x, y, batch_size=1024, epochs=30, validation_split=0.2)
